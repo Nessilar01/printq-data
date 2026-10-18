@@ -1,0 +1,51 @@
+[
+ {
+  "n": 100,
+  "compares": 545,
+  "nlogn": 664,
+  "insert_us": 5.5,
+  "delete_us": 4.0
+ },
+ {
+  "n": 200,
+  "compares": 1289,
+  "nlogn": 1529,
+  "insert_us": 10.9,
+  "delete_us": 7.2
+ },
+ {
+  "n": 400,
+  "compares": 2969,
+  "nlogn": 3458,
+  "insert_us": 27.9,
+  "delete_us": 17.8
+ },
+ {
+  "n": 800,
+  "compares": 6741,
+  "nlogn": 7715,
+  "insert_us": 76.9,
+  "delete_us": 44.4
+ },
+ {
+  "n": 1600,
+  "compares": 15034,
+  "nlogn": 17030,
+  "insert_us": 163.0,
+  "delete_us": 87.2
+ },
+ {
+  "n": 3200,
+  "compares": 33234,
+  "nlogn": 37260,
+  "insert_us": 480.9,
+  "delete_us": 220.3
+ },
+ {
+  "n": 6400,
+  "compares": 73006,
+  "nlogn": 80921,
+  "insert_us": 1567.9,
+  "delete_us": 501.7
+ }
+]

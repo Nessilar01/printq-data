@@ -1,0 +1,192 @@
+{
+ "material_counts": {
+  "PLA": 9,
+  "PETG": 6,
+  "ABS": 5
+ },
+ "material_revenue": {
+  "PLA": 2040,
+  "PETG": 2205,
+  "ABS": 1755
+ },
+ "printers": [
+  {
+   "name": "Printer 1",
+   "remaining": 12,
+   "finish": 247
+  },
+  {
+   "name": "Printer 2",
+   "remaining": 5,
+   "finish": 455
+  },
+  {
+   "name": "Printer 3",
+   "remaining": 20,
+   "finish": 195
+  },
+  {
+   "name": "Printer 4",
+   "remaining": 8,
+   "finish": 323
+  },
+  {
+   "name": "Printer 5",
+   "remaining": 3,
+   "finish": 408
+  },
+  {
+   "name": "Printer 6",
+   "remaining": 15,
+   "finish": 305
+  }
+ ],
+ "schedule": [
+  {
+   "printer": "Printer 1",
+   "job": "PCB_Standoff",
+   "material": "PLA",
+   "start": 12,
+   "end": 32
+  },
+  {
+   "printer": "Printer 1",
+   "job": "Bearing_Cap",
+   "material": "ABS",
+   "start": 32,
+   "end": 62
+  },
+  {
+   "printer": "Printer 1",
+   "job": "ATREX_Mount",
+   "material": "ABS",
+   "start": 62,
+   "end": 152
+  },
+  {
+   "printer": "Printer 1",
+   "job": "Motor_Mount",
+   "material": "PETG",
+   "start": 152,
+   "end": 247
+  },
+  {
+   "printer": "Printer 2",
+   "job": "Cable_Clip",
+   "material": "PLA",
+   "start": 5,
+   "end": 20
+  },
+  {
+   "printer": "Printer 2",
+   "job": "Gear_30T",
+   "material": "PETG",
+   "start": 20,
+   "end": 65
+  },
+  {
+   "printer": "Printer 2",
+   "job": "Sensor_Case",
+   "material": "ABS",
+   "start": 65,
+   "end": 215
+  },
+  {
+   "printer": "Printer 2",
+   "job": "Chassis_Rail",
+   "material": "PETG",
+   "start": 215,
+   "end": 455
+  },
+  {
+   "printer": "Printer 3",
+   "job": "Fan_Duct",
+   "material": "ABS",
+   "start": 20,
+   "end": 75
+  },
+  {
+   "printer": "Printer 3",
+   "job": "Wheel_Hub",
+   "material": "PETG",
+   "start": 75,
+   "end": 195
+  },
+  {
+   "printer": "Printer 4",
+   "job": "Drone_Arm",
+   "material": "PETG",
+   "start": 8,
+   "end": 113
+  },
+  {
+   "printer": "Printer 4",
+   "job": "Enclosure_Top",
+   "material": "ABS",
+   "start": 113,
+   "end": 323
+  },
+  {
+   "printer": "Printer 5",
+   "job": "Gripper_Finger",
+   "material": "PLA",
+   "start": 3,
+   "end": 28
+  },
+  {
+   "printer": "Printer 5",
+   "job": "Antenna_Holder",
+   "material": "PLA",
+   "start": 28,
+   "end": 78
+  },
+  {
+   "printer": "Printer 5",
+   "job": "Lidar_Plate",
+   "material": "PETG",
+   "start": 78,
+   "end": 228
+  },
+  {
+   "printer": "Printer 5",
+   "job": "Arm_Link_B",
+   "material": "PLA",
+   "start": 228,
+   "end": 408
+  },
+  {
+   "printer": "Printer 6",
+   "job": "Servo_Bracket",
+   "material": "PLA",
+   "start": 15,
+   "end": 50
+  },
+  {
+   "printer": "Printer 6",
+   "job": "Battery_Tray",
+   "material": "PLA",
+   "start": 50,
+   "end": 125
+  },
+  {
+   "printer": "Printer 6",
+   "job": "Arm_Link_A",
+   "material": "PLA",
+   "start": 125,
+   "end": 305
+  }
+ ],
+ "sjf_avg_wait": 68.7,
+ "fifo_avg_wait": 101.4,
+ "sjf_max_wait": 228,
+ "fifo_max_wait": 228,
+ "makespan": 455,
+ "jobs_printed": 19,
+ "total_price": 6130,
+ "longest_job": {
+  "name": "Chassis_Rail",
+  "duration": 240,
+  "sjf_wait": 215,
+  "fifo_wait": 215
+ }
+}

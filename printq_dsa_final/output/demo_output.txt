@@ -1,0 +1,63 @@
+STEP 1  Quote every job   price = duration x 3 THB + material surcharge
+  Antenna_Holder   50 min PLA  -> 170 THB
+  Gear_30T         45 min PETG -> 170 THB
+  Enclosure_Top   210 min ABS  -> 660 THB
+  ATREX_Mount      90 min ABS  -> 300 THB
+  ... 20 jobs, total 6000 THB
+
+STEP 2  Assign each job: Search-for-Minimum picks the printer, Manual Insert places it
+  Antenna_Holder  loads=[12, 5, 20, 8, 3, 15] -> Printer 5, queue slot 1
+  Gear_30T        loads=[12, 5, 20, 8, 53, 15] -> Printer 2, queue slot 1
+  Enclosure_Top   loads=[12, 50, 20, 8, 53, 15] -> Printer 4, queue slot 1
+  ATREX_Mount     loads=[12, 50, 20, 218, 53, 15] -> Printer 1, queue slot 1
+  Servo_Bracket   loads=[102, 50, 20, 218, 53, 15] -> Printer 6, queue slot 1
+  Wheel_Hub       loads=[102, 50, 20, 218, 53, 50] -> Printer 3, queue slot 1
+  Cable_Clip      loads=[102, 50, 140, 218, 53, 50] -> Printer 2, queue slot 1
+  Battery_Tray    loads=[102, 65, 140, 218, 53, 50] -> Printer 6, queue slot 2
+  Lidar_Plate     loads=[102, 65, 140, 218, 53, 125] -> Printer 5, queue slot 2
+  Sensor_Case     loads=[102, 65, 140, 218, 113, 125] -> Printer 2, queue slot 3
+  Motor_Mount     loads=[102, 215, 140, 218, 113, 125] -> Printer 1, queue slot 2
+  Gripper_Finger  loads=[197, 215, 140, 218, 113, 125] -> Printer 5, queue slot 1
+  Arm_Link_A      loads=[197, 215, 140, 218, 138, 125] -> Printer 6, queue slot 3
+  Arm_Link_B      loads=[197, 215, 140, 218, 138, 305] -> Printer 5, queue slot 4
+  Camera_Mount    loads=[197, 215, 140, 218, 318, 305] -> Printer 3, queue slot 1
+  Fan_Duct        loads=[197, 215, 180, 218, 318, 305] -> Printer 3, queue slot 2
+  PCB_Standoff    loads=[197, 215, 235, 218, 318, 305] -> Printer 1, queue slot 1
+  Chassis_Rail    loads=[217, 215, 235, 218, 318, 305] -> Printer 2, queue slot 4
+  Bearing_Cap     loads=[217, 455, 235, 218, 318, 305] -> Printer 1, queue slot 2
+  Drone_Arm       loads=[247, 455, 235, 218, 318, 305] -> Printer 4, queue slot 1
+
+Queue board after all 20 orders (each queue is shortest-job-first):
+  Printer 1  running  12 min left | backlog  247 | PCB_Standoff (20), Bearing_Cap (30), ATREX_Mount (90), Motor_Mount (95)
+  Printer 2  running   5 min left | backlog  455 | Cable_Clip (15), Gear_30T (45), Sensor_Case (150), Chassis_Rail (240)
+  Printer 3  running  20 min left | backlog  235 | Camera_Mount (40), Fan_Duct (55), Wheel_Hub (120)
+  Printer 4  running   8 min left | backlog  323 | Drone_Arm (105), Enclosure_Top (210)
+  Printer 5  running   3 min left | backlog  318 | Gripper_Finger (25), Antenna_Holder (50), Lidar_Plate (60), Arm_Link_B (180)
+  Printer 6  running  15 min left | backlog  305 | Servo_Bracket (35), Battery_Tray (75), Arm_Link_A (180)
+
+STEP 3  Material report (Frequency Count)
+  PLA    9 jobs    2040 THB
+  PETG   6 jobs    2205 THB
+  ABS    5 jobs    1755 THB
+
+STEP 4  Search by name (Linear Search), then cancel with Manual Delete
+  search 'ATREX_Mount'    -> Printer 1, index 2
+  search 'Camera_Mount'   -> Printer 3, index 0
+  cancelled Camera_Mount (40 min) from Printer 3; queue closed up
+  search 'No_Such_File'   -> -1 (not found)
+
+STEP 5  Owner re-slices Lidar_Plate (60 -> 150 min): queue is rebuilt with Merge Sort
+  Printer 5 before [25, 50, 60, 180]
+  Printer 5 after  [25, 50, 150, 180]
+
+STEP 6  Run the farm to completion (the head of a queue is removed with Manual Delete)
+  Printer 1 finishes at minute 247
+  Printer 2 finishes at minute 455
+  Printer 3 finishes at minute 195
+  Printer 4 finishes at minute 323
+  Printer 5 finishes at minute 408
+  Printer 6 finishes at minute 305
+  farm makespan: 455 min
+  average wait before start  SJF: 68.7 min   FIFO: 101.4 min
+  longest wait               SJF: 228 min   FIFO: 228 min
+  longest job Chassis_Rail (240 min) waits SJF 215 min / FIFO 215 min
